@@ -1,249 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mr_Bouquet.dev</title>
-   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Glazegang Links</title>
+<style>
+  :root {
+    --primary-color: #006b54; /* default green */
+    --text-color: #ffffff;
+    --banner-image: url('BANNER.png');
+    --logo-image: url('LOGO.png');     
+      }
 
-    .section {
-      width: 100%;
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      box-sizing: border-box;
-    }
+  body {
+    margin: 0;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+  }
 
-    .section-header {
-      display: flex;
-      justify-content: center; /* centered text */
-      align-items: center;
-      margin-bottom: 1rem;
-      height: 50px;
-    }
+  header {
+    display: flex;
+    align-items: center;
+    background: rgba(0,0,0,0.7);
+    padding: 0.5rem 1rem;
+  }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1rem;
-    }
+  .logo {
+    width: 50px;
+    height: 50px;
+    background-image: var(--logo-image);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 1rem;
+    border-radius: 5px;
+  }
 
-    .card {
-      background: #1b1b1b;
-      padding: 1.5rem;
-      border-radius: 10px;
-      text-align: center;
-      transition: 0.2s;
-    }
+  .header-text {
+    font-weight: bold;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+  }
 
-    .card:hover {
-      background: #222;
-      transform: translateY(-3px);
-    }
+  .banner {
+    width: 100%;
+    height: 250px;
+    background-image: var(--banner-image);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-color);
+    font-weight: 900;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
 
-    .card-icon i {
-      font-size: 2rem;
-      color: #00ccff;
-      margin-bottom: 0.5rem;
-    }
+  .banner::after {
+    content: "";
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 5px;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+    z-index: 1;
+  }
 
-    .btn {
-      margin-top: 1rem;
-      background: #00ccff;
-      color: #000;
-      border: none;
-      padding: 0.5rem 1.2rem;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+  .banner > span {
+    position: relative;
+    z-index: 2;
+  }
+  
+  main {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
 
-    .btn:hover {
-      background: #00a3cc;
-    }
+  main h2 {
+    font-weight: 900;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+  }
 
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: #1a1a1a;
-      width: 100%;
-      box-sizing: border-box;
-    }
+  .links-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
 
-    .background {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      z-index: -1;
-    }
+  .link-card {
+    width: 120px;
+    height: 120px;
+    background-color: #ffffff20;
+    border-radius: 6px;
+    box-shadow: 0 0 8px #00000080;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+  }
 
-    .ball {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.15;
-    }
+  .link-card:hover {
+    box-shadow: 0 0 15px #ffffffcc;
+  }
 
-    .ball-1 {
-      width: 200px;
-      height: 200px;
-      background: #00ccff;
-      top: 10%;
-      left: 15%;
-    }
-
-    .ball-2 {
-      width: 300px;
-      height: 300px;
-      background: #ff00cc;
-      bottom: 15%;
-      right: 10%;
-    }
-
-    .ball-3 {
-      width: 150px;
-      height: 150px;
-      background: #00ff99;
-      top: 50%;
-      right: 40%;
-    }
-
-    .cookie-popup {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #222;
-      color: #fff;
-      padding: 1.5rem 2rem;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-      max-width: 400px;
-      text-align: center;
-      z-index: 9999;
-    }
-
-    .cookie-popup p {
-      margin: 0 0 1rem;
-      font-size: 0.95rem;
-    }
-
-    .cookie-popup button {
-      background: #00ccff;
-      color: #000;
-      border: none;
-      padding: 0.5rem 1.5rem;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .cookie-popup button:hover {
-      background: #00a3cc;
-    }
-
-    .ad-placeholder {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 120px;
-      height: 600px;
-      background: #555;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      text-align: center;
-      z-index: 998;
-      border-radius: 0; /* no curves */
-    }
-
-    .ad-left {
-      left: 10px;
-    }
-
-    .ad-right {
-      right: 10px;
-    }
-
-    @media (max-width: 1200px) {
-      .ad-placeholder { display: none; }
-    }
-  </style>
+  .link-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 0.5rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+</style>
 </head>
 <body>
-  <div class="background">
-    <div class="ball ball-1"></div>
-    <div class="ball ball-2"></div>
-    <div class="ball ball-3"></div>
+
+<header>
+  <div class="logo" aria-label="Logo"></div>
+  <div class="header-text">GLAZE GANG</div>
+</header>
+
+<section class="banner" role="banner" aria-label="Banner">
+  <span>GLAZE GANG</span>
+</section>
+
+<main>
+  <h2>Links</h2>
+  <div class="links-grid" role="list">
+    <a href="#" class="link-card" role="listitem" aria-label="GROUP">
+      <div class="link-icon" style="background-image: url('GROUP.png');"></div>
+      ROBLOX GROUP
+    </a>
+    <a href="#" class="link-card" role="listitem" aria-label="DISCORD">
+      <div class="link-icon" style="background-image: url('DISCORD.png');"></div>
+      DISCORD SERVER
+    </a>
+    <a href="#" class="link-card" role="listitem" aria-label="GAME">
+      <div class="link-icon" style="background-image: url('GAME.png');"></div>
+      GLAZEWAY GAME
+    </a>
+    <a href="https://status.roblox.com" class="link-card" role="listitem" aria-label="ROBLOX">
+      <div class="link-icon" style="background-image: url('ROBLOX.png');"></div>
+      ROBLOX STATUS
+    </a>
+    <a href="https://status.easypos.lol" class="link-card" role="listitem" aria-label="EASYPOS">
+      <div class="link-icon" style="background-image: url('EASYPOS.png');"></div>
+      EASYPOS STATUS
+    </a>
+    <a href="https://status.directretailsolutions.com/" class="link-card" role="listitem" aria-label="DRS">
+      <div class="link-icon" style="background-image: url('DRS.png');"></div>
+      DRS STATUS
+    </a>
   </div>
-
-  <div class="ad-placeholder ad-left">Ad Placeholder</div>
-  <div class="ad-placeholder ad-right">Ad Placeholder</div>
-
-  <div class="content">
-    <main>
-      <section class="section">
-        <div class="section-header">
-          <h2>Public Systems</h2>
-        </div>
-
-        <div class="cards">
-          <div class="card">
-            <div class="card-icon"><i class="fas fa-globe"></i></div>
-            <div class="card-content">
-              <h3>POS System</h3>
-              <p>Minalmelsic Retail POS System</p>
-              <button class="btn">Download</button>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-icon"><i class="fas fa-tablet"></i></div>
-            <div class="card-content">
-              <h3>Ro-Store Tool Pack</h3>
-              <p>Includes Debit Card,Staff Barcode,Rewards Card</p>
-              <button class="btn">Download</button>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-icon"><i class="fas fa-tablet"></i></div>
-            <div class="card-content">
-              <h3>Trash Can System</h3>
-              <p>Simple Trash can Prompt System with models</p>
-              <button class="btn">Download</button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-<a href="https://linktr.ee/mrbouquet" target="_blank">Made By Mr_bouquet</a>
-    </footer>
-  </div>
-
-  <div class="cookie-popup" id="cookiePopup">
-    <p>We use cookies for analytics, ads, and to improve your experience.</p>
-    <button onclick="closeCookiePopup()">Okay</button>
-  </div>
-
-  <script>
-    function closeCookiePopup() {
-      document.getElementById('cookiePopup').style.display = 'none';
-    }
-  </script>
+<footer style="position: fixed; bottom: 0; width: 100%; background-color: #006b54; text-align: center; padding: 10px;">
+    <a href="https://linktr.ee/mrbouquet" style="color: #0000FF; text-decoration: none;">Made with ♡ by Mr_bouquet</a>
+    <span>   </span>
+    <a href="https://github.com/mrbouquet69/Roblox-assetshowcase-website" style="color: #0000FF; text-decoration: none;">Open Source On Github (Licences may apply)</a>
+</footer>
 </body>
 </html>
